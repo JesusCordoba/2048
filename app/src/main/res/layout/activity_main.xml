@@ -22,7 +22,7 @@
             android:textSize="50sp" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/score"
             android:layout_width="1dp"
             android:layout_height="50dp"
             android:layout_gravity="bottom"
@@ -57,7 +57,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/new_game"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -78,101 +78,149 @@
 
         <!-- Fila 1 -->
         <TextView
+            android:id="@+id/txt0"
             android:width="90dp"
             android:height="90dp"
+            android:gravity="center"
+            android:textSize="20dp"
             android:background="@drawable/tablero_drawable"
             android:text="@string/celda" />
 
         <TextView
+            android:id="@+id/txt1"
             android:width="90dp"
             android:height="90dp"
+            android:gravity="center"
+            android:textSize="20dp"
             android:background="@drawable/tablero_drawable"
             android:text="@string/celda" />
 
         <TextView
+            android:id="@+id/txt2"
             android:width="90dp"
             android:height="90dp"
+            android:gravity="center"
+            android:textSize="20dp"
             android:background="@drawable/tablero_drawable"
             android:text="@string/celda" />
 
         <TextView
+            android:id="@+id/txt3"
             android:width="90dp"
             android:height="90dp"
+            android:gravity="center"
+            android:textSize="20dp"
             android:background="@drawable/tablero_drawable"
             android:text="@string/celda" />
 
         <!-- Fila 2 -->
         <TextView
+            android:id="@+id/txt4"
             android:width="90dp"
             android:height="90dp"
+            android:gravity="center"
+            android:textSize="20dp"
             android:background="@drawable/tablero_drawable"
             android:text="@string/celda" />
 
         <TextView
+            android:id="@+id/txt5"
             android:width="90dp"
             android:height="90dp"
+            android:gravity="center"
+            android:textSize="20dp"
             android:background="@drawable/tablero_drawable"
             android:text="@string/celda" />
 
         <TextView
+            android:id="@+id/txt6"
             android:width="90dp"
             android:height="90dp"
+            android:gravity="center"
+            android:textSize="20dp"
             android:background="@drawable/tablero_drawable"
             android:text="@string/celda" />
 
         <TextView
+            android:id="@+id/txt7"
             android:width="90dp"
             android:height="90dp"
+            android:gravity="center"
+            android:textSize="20dp"
             android:background="@drawable/tablero_drawable"
             android:text="@string/celda" />
 
         <!-- Fila 3 -->
         <TextView
+            android:id="@+id/txt8"
             android:width="90dp"
             android:height="90dp"
+            android:gravity="center"
+            android:textSize="20dp"
             android:background="@drawable/tablero_drawable"
             android:text="@string/celda" />
 
         <TextView
+            android:id="@+id/txt9"
             android:width="90dp"
             android:height="90dp"
+            android:gravity="center"
+            android:textSize="20dp"
             android:background="@drawable/tablero_drawable"
             android:text="@string/celda" />
 
         <TextView
+            android:id="@+id/txt10"
             android:width="90dp"
             android:height="90dp"
+            android:gravity="center"
+            android:textSize="20dp"
             android:background="@drawable/tablero_drawable"
             android:text="@string/celda" />
 
         <TextView
+            android:id="@+id/txt11"
             android:width="90dp"
             android:height="90dp"
+            android:gravity="center"
+            android:textSize="20dp"
             android:background="@drawable/tablero_drawable"
             android:text="@string/celda" />
 
         <!-- Fila 4 -->
         <TextView
+            android:id="@+id/txt12"
             android:width="90dp"
             android:height="90dp"
+            android:gravity="center"
+            android:textSize="20dp"
             android:background="@drawable/tablero_drawable"
             android:text="@string/celda" />
 
         <TextView
+            android:id="@+id/txt13"
             android:width="90dp"
             android:height="90dp"
+            android:gravity="center"
+            android:textSize="20dp"
             android:background="@drawable/tablero_drawable"
             android:text="@string/celda" />
 
         <TextView
+            android:id="@+id/txt14"
             android:width="90dp"
             android:height="90dp"
+            android:gravity="center"
+            android:textSize="20dp"
             android:background="@drawable/tablero_drawable"
             android:text="@string/celda" />
 
         <TextView
+            android:id="@+id/txt15"
             android:width="90dp"
             android:height="90dp"
+            android:gravity="center"
+            android:textSize="20dp"
             android:background="@drawable/tablero_drawable"
             android:text="@string/celda" />
 
