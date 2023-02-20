@@ -29,12 +29,15 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     TextView[][] listaCasillas;
     Button newGame;
     TextView score;
+    TextView best_score;
     int valor_score;
     // Fila y columna de numero generado aleatoriamente en el tablero
     int nfila_aleatorio;
     int ncolumna_aleatorio;
     // Boolean para comprobar si un numero se ha movido en el tablero
     boolean mover = false;
+    DataBase db;
+    String user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +45,14 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        db = new DataBase(this);
         this.gestureDetector = new GestureDetector(this, this);
         gestureDetector.setOnDoubleTapListener(this);
 
+        user = "Guest";
         score = (TextView) findViewById(R.id.score);
+        best_score = (TextView) findViewById(R.id.best_score);
+        best_score.setText("BEST \n "+ db.getBestScore(user));
 
         listaCasillas = new TextView[4][4];
         // Fila 1
@@ -89,6 +96,8 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
                 // Generar un numero para volver a empezar a jugar
                 generarNumero();
+
+                dialogo_fin();
             }
         });
 
@@ -413,36 +422,42 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     }
 
     public void comprobarFin(){
-        boolean fin = true;
-        boolean fin2 = true;
+        boolean fin_col = true;
+        boolean fin_fil = true;
+        boolean fin_v = true;
         for (int fila = 0; fila < listaCasillas.length; fila++) {
             for (int columna = 0; columna < listaCasillas[fila].length; columna++) {
 
-                if(columna<2){
+                // Comprobar que el numero de al lado sea igual
+                if(columna<=2){
                     int sig_columna = columna + 1;
-                    if (listaCasillas[fila][columna].equals(listaCasillas[fila][sig_columna])){
-
-                        fin = false;
-//                        break;
-                    }else if(listaCasillas[fila][columna].getText().toString().isEmpty()){
-                        fin = false;
-//                        break;
+                    if (listaCasillas[fila][columna].getText().toString().equals(listaCasillas[fila][sig_columna].getText().toString())){
+                        fin_col = false;
+                        break;
                     }
                 }
+
+                // Comprobar que el numero de debajo no sea igual
                 if (fila<=2){
-                    Log.d(LOG_TAG, "------------" + " FIN_fila: " + fila + " FIN_columna: " + columna +  "------------");
                     int fila_abajo = fila + 1;
-                    if (listaCasillas[fila][columna].equals(listaCasillas[fila_abajo][columna])){
-                        fin2 = false;
-//                        break;
+                    if (listaCasillas[fila][columna].getText().toString().equals(listaCasillas[fila_abajo][columna].getText().toString())){
+                        fin_fil = false;
+                        break;
                     }
+                }
+
+                // Comprobar que no haya casillas vacias
+                if(listaCasillas[fila][columna].getText().toString().isEmpty()){
+                    fin_v = false;
+                    break;
                 }
 
             }
         }
-        Log.d(LOG_TAG, "------------" + " FIN: " + fin + "------------");
-        if (fin == true && fin2 == true){
-            newGame.setText("FIN");
+        if (fin_col == true && fin_fil == true && fin_v == true){
+            db.addScore(user,"2048",valor_score);
+            dialogo_fin();
+
         }
     }
 
@@ -454,6 +469,23 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
         // Mostrar por pantalla la puntuacion
         score.setText("SCORE \n " + valor_score);
+    }
+
+    public void dialogo_fin(){
+        ArrayList<Score> score_list = db.getScores();
+        String ranking = "";
+
+        for (int i = 0; i < score_list.size(); i++) {
+            if (i==10){
+                break;
+            }
+            ranking += (i+1) + "- " + score_list.get(i).getPlayer() + " " + score_list.get(i).getScore() +"\n";
+
+        }
+
+        best_score.setText("BEST \n "+ db.getBestScore(user));
+        Dialogo dialogo = new Dialogo(valor_score,ranking);
+        dialogo.show(getSupportFragmentManager(),"Dialogo");
     }
 
     @Override
